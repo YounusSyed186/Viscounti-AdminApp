@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/menu");
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URI}api/menu`);
         // Count total items
         const total = Object.values(res.data.groupedItems).reduce((acc: number, arr: any[]) => acc + arr.length, 0);
         setMenuCount(total);
