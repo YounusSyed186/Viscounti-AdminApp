@@ -14,6 +14,7 @@ import { DayPickerProvider } from "react-day-picker";
 import MenuListingPage from "./components/MoreMenu";
 import FullMenuPage from "./components/MoreMenu";
 import MenuImageUpload from "./pages/admin/UploadMenu";
+import OfferBadgesManager from "./pages/admin/offerBage";
 
 const queryClient = new QueryClient();
 
@@ -43,7 +44,7 @@ const App = () => {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="menu" element={<MenuManagement />} />
                 <Route path="menu-img" element={<MenuImageUpload />} />
-                <Route path="orders" element={<div className="p-6 text-center text-muted-foreground">Orders page coming soon...</div>} />
+                <Route path="offer" element={<OfferBadgesManager/>} />
                 <Route path="settings" element={<div className="p-6 text-center text-muted-foreground">Settings page coming soon...</div>} />
               </Route>
               

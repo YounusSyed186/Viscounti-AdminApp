@@ -31,7 +31,7 @@ const AdminLayout = () => {
   const navigation = [
     { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
     { name: "Menu Management", href: "/admin/menu", icon: UtensilsCrossed },
-    { name: "Orders", href: "/admin/orders", icon: Users },
+    { name: "Offer", href: "/admin/offer", icon: Users },
     { name: "Settings", href: "/admin/settings", icon: Settings },
     { name: "Menu Image", href: "/admin/menu-img", icon: Settings },
   ];
