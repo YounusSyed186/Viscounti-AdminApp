@@ -35,7 +35,10 @@ const categories = [
   { id: "calzoni", name: "Calzones" },
   { id: "kebab-panini", name: "Kebab & Panini" },
   { id: "burgers", name: "Burgers" },
-  { id: "bibite", name: "Drinks" }
+  { id: "bibite", name: "Drinks" },
+  { id: "paidina & panino", name: "sandwich" },
+  { id: "Indian cuisine", name: "Indian cuisine" },
+  { id: "dolco", name: "desert" },
 ];
 
 const MenuManagement = () => {
