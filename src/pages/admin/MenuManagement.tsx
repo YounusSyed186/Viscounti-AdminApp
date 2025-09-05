@@ -30,15 +30,15 @@ const API_URL = `${import.meta.env.VITE_BACKEND_URI}api/menu`;
 
 // Category enums with display names
 const categories = [
-  { id: "pizze-tradizionali", name: "Traditional Pizzas" },
-  { id: "pizze-speciali", name: "Special Pizzas" },
-  { id: "calzoni", name: "Calzones" },
-  { id: "kebab-panini", name: "Kebab & Panini" },
+  { id: "pizze-tradizionali", name: "pizze-tradizionali" },
+  { id: "pizze-speciali", name: "pizze-speciali" },
+  { id: "calzoni", name: "calzoni" },
+  { id: "kebab-panini", name: "kebab-panini" },
   { id: "burgers", name: "Burgers" },
-  { id: "bibite", name: "Drinks" },
-  { id: "paidina & panino", name: "sandwich" },
+  { id: "bibite", name: "bibite" },
+  { id: "fritte", name: "fritte" },
   { id: "Indian cuisine", name: "Indian cuisine" },
-  { id: "dolco", name: "desert" },
+  { id: "dolco", name: "dolco" },
 ];
 
 const MenuManagement = () => {
