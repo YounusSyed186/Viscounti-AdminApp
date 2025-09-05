@@ -42,7 +42,7 @@ const MenuImageUpload = () => {
       setMenuImages(response.data);
     } catch (error: any) {
       console.error("Error fetching images:", error);
-      setMessage("Error fetching images");
+      setMessage("Errore nel caricamento delle immagini");
       setUploadStatus("error");
     } finally {
       setLoading(false);
@@ -54,13 +54,13 @@ const MenuImageUpload = () => {
       const file = e.target.files[0];
 
       if (!file.type.startsWith("image/")) {
-        setMessage("Please select an image file (JPG, PNG, WEBP)");
+        setMessage("Seleziona un file immagine (JPG, PNG, WEBP)");
         setUploadStatus("error");
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        setMessage("Image must be less than 5MB");
+        setMessage("L'immagine deve essere inferiore a 5MB");
         setUploadStatus("error");
         return;
       }
@@ -77,7 +77,7 @@ const MenuImageUpload = () => {
 
   const handleUpload = async () => {
     if (!image) {
-      setMessage("Please select an image first");
+      setMessage("Seleziona prima un'immagine");
       setUploadStatus("error");
       return;
     }
@@ -95,7 +95,7 @@ const MenuImageUpload = () => {
         },
       });
 
-      setMessage("Image uploaded successfully!");
+      setMessage("Immagine caricata con successo!");
       setUploadStatus("success");
       fetchMenuImages();
 
@@ -107,7 +107,7 @@ const MenuImageUpload = () => {
       }, 3000);
     } catch (err: any) {
       console.error("Error uploading image:", err);
-      setMessage(err.response?.data?.message || "Upload failed");
+      setMessage(err.response?.data?.message || "Caricamento fallito");
       setUploadStatus("error");
     } finally {
       setUploading(false);
@@ -115,13 +115,13 @@ const MenuImageUpload = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this image?")) return;
+    if (!confirm("Sei sicuro di voler eliminare questa immagine?")) return;
 
     setDeletingId(id);
 
     try {
       await axios.delete(`${API_URL}/images/${id}`);
-      setMessage("Image deleted successfully!");
+      setMessage("Immagine eliminata con successo!");
       setUploadStatus("success");
       fetchMenuImages();
 
@@ -131,7 +131,7 @@ const MenuImageUpload = () => {
       }, 3000);
     } catch (err: any) {
       console.error("Error deleting image:", err);
-      setMessage(err.response?.data?.message || "Delete failed");
+      setMessage(err.response?.data?.message || "Eliminazione fallita");
       setUploadStatus("error");
     } finally {
       setDeletingId(null);
@@ -147,7 +147,7 @@ const MenuImageUpload = () => {
 
   const formatDate = (dateString: string) => {
     try {
-      return new Date(dateString).toLocaleDateString("en-US", {
+      return new Date(dateString).toLocaleDateString("it-IT", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -155,24 +155,23 @@ const MenuImageUpload = () => {
         minute: "2-digit",
       });
     } catch {
-      return "Unknown date";
+      return "Data sconosciuta";
     }
   };
 
   return (
     <div className="container mx-auto p-4 max-w-6xl">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Menu Image Management</h1>
+        <h1 className="text-2xl font-bold">Gestione Immagini Menu</h1>
         <p className="text-gray-600 mt-2">
-          Upload and manage images of your physical menu that will be displayed
-          to customers.
+          Carica e gestisci le immagini del tuo menu fisico che verranno mostrate ai clienti.
         </p>
       </div>
 
       {/* Upload Section */}
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle>Upload New Image</CardTitle>
+          <CardTitle>Carica Nuova Immagine</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
@@ -180,7 +179,7 @@ const MenuImageUpload = () => {
               <div className="flex flex-col items-center">
                 <img
                   src={imagePreview}
-                  alt="Preview"
+                  alt="Anteprima"
                   className="max-h-64 object-contain rounded-md mb-4"
                 />
                 <Button
@@ -188,13 +187,13 @@ const MenuImageUpload = () => {
                   onClick={removeImage}
                   className="text-red-500 hover:text-red-700"
                 >
-                  <X className="w-4 h-4 mr-2" /> Remove
+                  <X className="w-4 h-4 mr-2" /> Rimuovi
                 </Button>
               </div>
             ) : (
               <>
                 <ImageIcon className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500 mb-2">Drag & drop or click to upload</p>
+                <p className="text-gray-500 mb-2">Trascina o clicca per caricare</p>
                 <input
                   type="file"
                   id="image-upload"
@@ -206,7 +205,7 @@ const MenuImageUpload = () => {
                 <label htmlFor="image-upload">
                   <Button asChild variant="outline" disabled={uploading}>
                     <span>
-                      <Upload className="w-4 h-4 mr-2" /> Select Image
+                      <Upload className="w-4 h-4 mr-2" /> Seleziona Immagine
                     </span>
                   </Button>
                 </label>
@@ -237,11 +236,11 @@ const MenuImageUpload = () => {
             >
               {uploading ? (
                 <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Uploading...
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Caricamento...
                 </>
               ) : (
                 <>
-                  <Upload className="w-4 h-4 mr-2" /> Upload Image
+                  <Upload className="w-4 h-4 mr-2" /> Carica Immagine
                 </>
               )}
             </Button>
@@ -252,13 +251,13 @@ const MenuImageUpload = () => {
       {/* Gallery */}
       <Card>
         <CardHeader>
-          <CardTitle>Uploaded Images ({menuImages.length})</CardTitle>
+          <CardTitle>Immagini Caricate ({menuImages.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center h-40">
               <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-              <span className="ml-2 text-gray-600">Loading...</span>
+              <span className="ml-2 text-gray-600">Caricamento...</span>
             </div>
           ) : menuImages.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -269,12 +268,12 @@ const MenuImageUpload = () => {
                 >
                   <img
                     src={img.imageUrl}
-                    alt={`Uploaded on ${formatDate(img.createdAt)}`}
+                    alt={`Caricata il ${formatDate(img.createdAt)}`}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-3">
                     <p className="text-sm text-gray-500">
-                      Uploaded: {formatDate(img.createdAt)}
+                      Caricata: {formatDate(img.createdAt)}
                     </p>
                   </div>
                   <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -297,9 +296,9 @@ const MenuImageUpload = () => {
           ) : (
             <div className="text-center p-12 border-2 border-dashed border-gray-300 rounded-md bg-gray-50">
               <ImageIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg font-medium">No images yet</p>
+              <p className="text-gray-500 text-lg font-medium">Nessuna immagine ancora</p>
               <p className="text-gray-400 mt-2 text-sm">
-                Upload your first image to get started.
+                Carica la tua prima immagine per iniziare.
               </p>
             </div>
           )}

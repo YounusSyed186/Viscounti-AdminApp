@@ -24,7 +24,7 @@ const Dashboard = () => {
         const total = Object.values(res.data.groupedItems).reduce((acc: number, arr: any[]) => acc + arr.length, 0);
         setMenuCount(total);
       } catch (err) {
-        console.error("Error fetching menu:", err);
+        console.error("Errore nel caricamento del menu:", err);
       } finally {
         setLoading(false);
       }
@@ -35,26 +35,26 @@ const Dashboard = () => {
 
   const stats = [
     {
-      title: "Total Orders Today",
-      value: "Coming Soon",
+      title: "Ordini Totali Oggi",
+      value: "Prossimamente",
       icon: ShoppingCart,
       color: "text-green-500"
     },
     {
-      title: "Revenue Today", 
-      value: "Coming Soon",
+      title: "Incasso Oggi", 
+      value: "Prossimamente",
       icon: DollarSign,
       color: "text-blue-500"
     },
     {
-      title: "Menu Items",
-      value: loading ? "Loading..." : menuCount ?? "0",
+      title: "Elementi nel Menu",
+      value: loading ? "Caricamento..." : menuCount ?? "0",
       icon: UtensilsCrossed,
       color: "text-orange-500"
     },
     {
-      title: "Active Orders",
-      value: "Coming Soon",
+      title: "Ordini Attivi",
+      value: "Prossimamente",
       icon: Clock,
       color: "text-gold"
     }

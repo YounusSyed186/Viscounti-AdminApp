@@ -30,10 +30,10 @@ const AdminLayout = () => {
 
   const navigation = [
     { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-    { name: "Menu Management", href: "/admin/menu", icon: UtensilsCrossed },
-    { name: "Offer", href: "/admin/offer", icon: Users },
-    { name: "Settings", href: "/admin/settings", icon: Settings },
-    { name: "Menu Image", href: "/admin/menu-img", icon: Settings },
+    { name: "Gestione Menu", href: "/admin/menu", icon: UtensilsCrossed },
+    { name: "Offerte", href: "/admin/offer", icon: Users },
+    { name: "Impostazioni", href: "/admin/settings", icon: Settings },
+    { name: "Immagini Menu", href: "/admin/menu-img", icon: Settings },
   ];
 
   const isActivePage = (href: string) => {
@@ -50,7 +50,7 @@ const AdminLayout = () => {
       >
         {/* Header */}
         <div className="p-4 border-b border-border flex items-center justify-between">
-          {sidebarOpen && <h1 className="text-lg font-serif font-bold text-gold">Visconti Admin</h1>}
+          {sidebarOpen && <h1 className="text-lg font-serif font-bold text-gold">Admin Visconti</h1>}
           <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? <X className="w-4 h-4" /> : <MenuIcon className="w-4 h-4" />}
           </Button>
@@ -94,7 +94,7 @@ const AdminLayout = () => {
                 sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              Logout
+              Esci
             </span>
           </Button>
         </div>
@@ -109,7 +109,7 @@ const AdminLayout = () => {
         <div className="absolute inset-0 bg-black/30" onClick={() => setMobileSidebarOpen(false)} />
         <aside className="relative z-40 flex flex-col w-64 h-full bg-card border-r border-border p-4">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-lg font-serif font-bold text-gold">Visconti Admin</h1>
+            <h1 className="text-lg font-serif font-bold text-gold">Admin Visconti</h1>
             <Button variant="ghost" size="sm" onClick={() => setMobileSidebarOpen(false)}>
               <X className="w-4 h-4" />
             </Button>
@@ -143,7 +143,7 @@ const AdminLayout = () => {
               onClick={handleLogout}
             >
               <LogOut className="w-5 h-5 flex-shrink-0" />
-              Logout
+              Esci
             </Button>
           </div>
         </aside>
@@ -166,7 +166,7 @@ const AdminLayout = () => {
             </h2>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-muted-foreground">Welcome, Admin</span>
+            <span className="text-sm text-muted-foreground">Benvenuto, Admin</span>
             <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
               <span className="text-xs font-semibold text-black">A</span>
             </div>

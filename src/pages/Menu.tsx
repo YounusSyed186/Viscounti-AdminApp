@@ -21,10 +21,10 @@ const Menu = () => {
         if (response.data && response.data.groupedItems && typeof response.data.groupedItems === 'object') {
           setMenuItems(response.data.groupedItems);
         } else {
-          setError('API response is not in the expected format');
+          setError('La risposta dell\'API non è nel formato previsto');
         }
       } catch (err) {
-        setError('Failed to fetch menu items');
+        setError('Impossibile caricare i prodotti del menu');
       } finally {
         setLoading(false);
       }
@@ -38,7 +38,7 @@ const Menu = () => {
     "pizze-speciali": "⭐ Pizze Speciali", 
     "calzoni": "🥟 Calzoni",
     "kebab-panini": "🥙 Kebab & Panini",
-    "burgers": "🍔 Burgers & Sides",
+    "burgers": "🍔 Burgers & Contorni",
     "bibite": "🥤 Bibite",
   };
 
@@ -47,7 +47,7 @@ const Menu = () => {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading menu...</p>
+          <p className="text-muted-foreground">Caricamento menu...</p>
         </div>
       </div>
     );
@@ -58,7 +58,7 @@ const Menu = () => {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <p className="text-destructive mb-4">{error}</p>
-          <Button onClick={() => navigate('/')}>Go Back Home</Button>
+          <Button onClick={() => navigate('/')}>Torna alla Home</Button>
         </div>
       </div>
     );
@@ -83,10 +83,10 @@ const Menu = () => {
             className="flex items-center mr-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
+            Indietro
           </Button>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gold">
-            La Nostra Menu Completa
+            Il Nostro Menu Completo
           </h1>
         </div>
 

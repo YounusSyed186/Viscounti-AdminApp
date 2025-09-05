@@ -31,7 +31,7 @@ const OfferBadgesManager = () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URI}api/offer-badges`);
       setBadges(res.data);
     } catch (err) {
-      console.error("Error fetching badges:", err);
+      console.error("Errore nel caricamento dei badge:", err);
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ const OfferBadgesManager = () => {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URI}api/offer-badges/${id}`);
       setBadges((prev) => prev.filter((b) => b._id !== id));
     } catch (err) {
-      console.error("Error deleting badge:", err);
+      console.error("Errore nell'eliminazione del badge:", err);
     }
   };
 
@@ -65,7 +65,7 @@ const OfferBadgesManager = () => {
       setBadges((prev) => [res.data, ...prev]);
       setForm({ title: "", description: "", discount: "", expiryDate: "" });
     } catch (err) {
-      console.error("Error adding badge:", err);
+      console.error("Errore nell'aggiunta del badge:", err);
     } finally {
       setSubmitting(false);
     }
@@ -76,23 +76,23 @@ const OfferBadgesManager = () => {
       {/* Add Offer Badge Form */}
       <Card>
         <CardHeader>
-          <CardTitle>Add New Offer Badge</CardTitle>
+          <CardTitle>Aggiungi Nuovo Badge Offerta</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
-              placeholder="Title"
+              placeholder="Titolo"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               required
             />
             <Input
-              placeholder="Description"
+              placeholder="Descrizione"
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
             />
             <Input
-              placeholder="Discount %"
+              placeholder="Sconto %"
               type="number"
               value={form.discount}
               onChange={(e) => setForm({ ...form, discount: e.target.value })}
@@ -107,7 +107,7 @@ const OfferBadgesManager = () => {
             <div className="md:col-span-2 flex justify-end">
               <Button type="submit" disabled={submitting}>
                 <PlusCircle className="w-4 h-4 mr-2" />
-                {submitting ? "Adding..." : "Add Badge"}
+                {submitting ? "Aggiungendo..." : "Aggiungi Badge"}
               </Button>
             </div>
           </form>
@@ -117,13 +117,13 @@ const OfferBadgesManager = () => {
       {/* List of Badges */}
       <Card>
         <CardHeader>
-          <CardTitle>All Offer Badges</CardTitle>
+          <CardTitle>Tutti i Badge Offerta</CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
-            <p>Loading badges...</p>
+            <p>Caricamento badge...</p>
           ) : badges.length === 0 ? (
-            <p className="text-muted-foreground">No badges found.</p>
+            <p className="text-muted-foreground">Nessun badge trovato.</p>
           ) : (
             <div className="grid gap-4">
               {badges.map((badge) => (
@@ -135,9 +135,9 @@ const OfferBadgesManager = () => {
                     <h3 className="font-bold text-lg">{badge.title}</h3>
                     <p className="text-sm text-muted-foreground">{badge.description}</p>
                     <div className="flex items-center gap-2 mt-2">
-                      <Badge variant="secondary">{badge.discount}% OFF</Badge>
+                      <Badge variant="secondary">{badge.discount}% SCONTO</Badge>
                       <Badge variant="outline">
-                        Expires: {new Date(badge.expiryDate).toLocaleDateString()}
+                        Scade: {new Date(badge.expiryDate).toLocaleDateString("it-IT")}
                       </Badge>
                     </div>
                   </div>

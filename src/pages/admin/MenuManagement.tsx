@@ -69,7 +69,7 @@ const MenuManagement = () => {
         const items = Object.values(res.data.groupedItems).flat();
         setMenuItems(items as MenuItem[]);
       } catch (err) {
-        console.error("Error fetching menu:", err);
+        console.error("Errore nel caricamento del menu:", err);
       } finally {
         setLoading(false);
       }
@@ -111,7 +111,7 @@ const MenuManagement = () => {
       setShowForm(false);
       resetForm();
     } catch (err) {
-      console.error("Error adding/updating item:", err);
+      console.error("Errore nell'aggiunta/aggiornamento dell'elemento:", err);
     } finally {
       setSubmitting(false);
     }
@@ -119,12 +119,12 @@ const MenuManagement = () => {
 
   // Delete item
   const handleDelete = async (id: string) => {
-    if (confirm("Are you sure you want to delete this item?")) {
+    if (confirm("Sei sicuro di voler eliminare questo elemento?")) {
       try {
         await axios.delete(`${API_URL}/${id}`);
         setMenuItems(menuItems.filter(item => item._id !== id));
       } catch (err) {
-        console.error("Error deleting item:", err);
+        console.error("Errore nell'eliminazione dell'elemento:", err);
       }
     }
   };
@@ -189,14 +189,14 @@ const MenuManagement = () => {
     <div className="container mx-auto p-4 space-y-6">
       {/* Header & Filter */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h1 className="text-2xl font-bold">Menu Management</h1>
+        <h1 className="text-2xl font-bold">Gestione Menu</h1>
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           <select
             className="border px-3 py-2 rounded-md w-full sm:w-48 bg-gold text-black"
             value={filterCategory}
             onChange={(e) => { setFilterCategory(e.target.value); setPage(0); }}
           >
-            <option value="all">All Categories</option>
+            <option value="all">Tutte le Categorie</option>
             {categories.map(cat => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
@@ -205,7 +205,7 @@ const MenuManagement = () => {
             onClick={() => setShowForm(true)} 
             className="flex items-center gap-2 bg-gold text-black hover:bg-gold-dark"
           >
-            <Plus className="w-4 h-4" /> Add Item
+            <Plus className="w-4 h-4" /> Aggiungi Elemento
           </Button>
         </div>
       </div>
@@ -215,7 +215,7 @@ const MenuManagement = () => {
         <Card className="mb-6">
           <CardHeader className="pb-3">
             <CardTitle className="text-lg flex justify-between items-center">
-              {formData._id ? "Edit Menu Item" : "Add Menu Item"}
+              {formData._id ? "Modifica Elemento Menu" : "Aggiungi Elemento Menu"}
               <Button variant="ghost" size="icon" onClick={handleCancel}>
                 <X className="w-4 h-4" />
               </Button>
@@ -226,9 +226,9 @@ const MenuManagement = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Name</label>
+                    <label className="text-sm font-medium mb-1 block">Nome</label>
                     <Input
-                      placeholder="Item name"
+                      placeholder="Nome elemento"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
@@ -236,9 +236,9 @@ const MenuManagement = () => {
                   </div>
                   
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Description</label>
+                    <label className="text-sm font-medium mb-1 block">Descrizione</label>
                     <Textarea
-                      placeholder="Item description"
+                      placeholder="Descrizione elemento"
                       value={formData.description}
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                       required
@@ -247,7 +247,7 @@ const MenuManagement = () => {
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium mb-1 block">Price</label>
+                      <label className="text-sm font-medium mb-1 block">Prezzo</label>
                       <Input
                         placeholder="0.00"
                         type="number"
@@ -259,7 +259,7 @@ const MenuManagement = () => {
                     </div>
                     
                     <div>
-                      <label className="text-sm font-medium mb-1 block">Category</label>
+                      <label className="text-sm font-medium mb-1 block">Categoria</label>
                       <select
                         value={formData.category}
                         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -274,20 +274,20 @@ const MenuManagement = () => {
                   </div>
                   
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Image</label>
+                    <label className="text-sm font-medium mb-1 block">Immagine</label>
                     <div className="flex items-center justify-center w-full">
                       <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           {imagePreview ? (
                             <img 
                               src={imagePreview} 
-                              alt="Preview" 
+                              alt="Anteprima" 
                               className="h-20 w-20 object-cover rounded-md mb-2"
                             />
                           ) : (
                             <>
                               <ImageIcon className="w-8 h-8 mb-3 text-gray-400" />
-                              <p className="mb-2 text-sm text-gray-500">Click to upload</p>
+                              <p className="mb-2 text-sm text-gray-500">Clicca per caricare</p>
                             </>
                           )}
                         </div>
@@ -304,13 +304,13 @@ const MenuManagement = () => {
                 
                 <div className="flex flex-col justify-between">
                   <div className="p-4 border rounded-md bg-gold text-black hover:bg-gold-dark">
-                    <h3 className="font-medium mb-2">Preview</h3>
+                    <h3 className="font-medium mb-2">Anteprima</h3>
                     <div className="space-y-2">
-                      <p className="font-semibold">{formData.name || "Item name"}</p>
-                      <p className="text-sm text-gray-600">{formData.description || "Item description"}</p>
-                      <p className="font-medium">{formData.price ? `£${formData.price}` : "£0.00"}</p>
+                      <p className="font-semibold">{formData.name || "Nome elemento"}</p>
+                      <p className="text-sm text-gray-600">{formData.description || "Descrizione elemento"}</p>
+                      <p className="font-medium">{formData.price ? `€${formData.price}` : "€0.00"}</p>
                       <p className="text-xs text-gray-500 capitalize">
-                        {categories.find(c => c.id === formData.category)?.name || "Category"}
+                        {categories.find(c => c.id === formData.category)?.name || "Categoria"}
                       </p>
                     </div>
                   </div>
@@ -326,14 +326,14 @@ const MenuManagement = () => {
                       ) : (
                         <Save className="w-4 h-4" />
                       )}
-                      {formData._id ? "Update" : "Add"} Item
+                      {formData._id ? "Aggiorna" : "Aggiungi"} Elemento
                     </Button>
                     <Button 
                       type="button" 
                       variant="outline" 
                       onClick={handleCancel}
                     >
-                      Cancel
+                      Annulla
                     </Button>
                   </div>
                 </div>
@@ -347,18 +347,18 @@ const MenuManagement = () => {
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-          <span className="ml-2">Loading menu items...</span>
+          <span className="ml-2">Caricamento elementi...</span>
         </div>
       ) : (
         <div className="relative">
           {filteredItems.length === 0 ? (
             <div className="text-center py-12 border rounded-lg">
-              <p className="text-gray-500">No menu items found.</p>
+              <p className="text-gray-500">Nessun elemento trovato.</p>
               <Button 
                 onClick={() => setShowForm(true)} 
                 className="mt-4 bg-gold text-black hover:bg-gold-dark"
               >
-                <Plus className="w-4 h-4 mr-2" /> Add Your First Item
+                <Plus className="w-4 h-4 mr-2" /> Aggiungi il Primo Elemento
               </Button>
             </div>
           ) : (
@@ -376,7 +376,7 @@ const MenuManagement = () => {
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
                         <h3 className="font-bold text-lg">{item.name}</h3>
-                        <span className="font-semibold text-green-700">£{item.price}</span>
+                        <span className="font-semibold text-green-700">€{item.price}</span>
                       </div>
                       <p className="text-gray-600 text-sm mb-2 line-clamp-2">{item.description}</p>
                       <div className="flex justify-between items-center mb-4">
@@ -391,7 +391,7 @@ const MenuManagement = () => {
                           className="flex-1 gap-2"
                           onClick={() => handleEdit(item)}
                         >
-                          <Edit className="w-3 h-3" /> Edit
+                          <Edit className="w-3 h-3" /> Modifica
                         </Button>
                         <Button
                           variant="outline"
@@ -399,7 +399,7 @@ const MenuManagement = () => {
                           onClick={() => handleDelete(item._id)}
                           className="text-red-500 hover:text-red-700 hover:bg-red-50"
                         >
-                          <Trash2 className="w-3 h-3" /> Delete
+                          <Trash2 className="w-3 h-3" /> Elimina
                         </Button>
                       </div>
                     </CardContent>
@@ -416,10 +416,10 @@ const MenuManagement = () => {
                     disabled={page === 0}
                     className="gap-1"
                   >
-                    <ChevronLeft className="w-4 h-4" /> Previous
+                    <ChevronLeft className="w-4 h-4" /> Precedente
                   </Button>
                   <span className="mx-2 text-sm text-gray-600">
-                    Page {page + 1} of {totalPages}
+                    Pagina {page + 1} di {totalPages}
                   </span>
                   <Button
                     variant="outline"
@@ -427,7 +427,7 @@ const MenuManagement = () => {
                     disabled={page === totalPages - 1}
                     className="gap-1"
                   >
-                    Next <ChevronRight className="w-4 h-4" />
+                    Successiva <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
               )}

@@ -23,7 +23,7 @@ const AdminLogin = () => {
         localStorage.setItem('adminToken', 'mock-admin-token');
         navigate('/admin/dashboard');
       } else {
-        alert('Invalid credentials. Use admin@visconti.com / admin123');
+        alert('Credenziali non valide. Usa admin@visconti.com / admin123');
       }
       setLoading(false);
     }, 1000);
@@ -42,10 +42,10 @@ const AdminLogin = () => {
             <Lock className="w-8 h-8 text-black" />
           </div>
           <CardTitle className="text-2xl font-serif text-gold">
-            Admin Login
+            Accesso Amministratore
           </CardTitle>
           <p className="text-muted-foreground text-sm">
-            Visconti Pizzeria Dashboard
+            Pannello di Controllo Pizzeria Visconti
           </p>
         </CardHeader>
         
@@ -76,7 +76,7 @@ const AdminLogin = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter password"
+                  placeholder="Inserisci password"
                   className="pl-10 pr-10"
                   required
                 />
@@ -99,13 +99,13 @@ const AdminLogin = () => {
               className="w-full bg-gold text-black hover:bg-gold-dark"
               disabled={loading}
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? 'Accesso in corso...' : 'Accedi'}
             </Button>
           </form>
           
           <div className="mt-6 p-4 bg-muted/50 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              Demo credentials:<br />
+              Credenziali demo:<br />
               <span className="font-mono">admin@visconti.com</span><br />
               <span className="font-mono">admin123</span>
             </p>
