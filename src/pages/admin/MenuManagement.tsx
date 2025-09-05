@@ -31,6 +31,7 @@ const API_URL = `${import.meta.env.VITE_BACKEND_URI}api/menu`;
 // Category enums with display names
 const categories = [
   { id: "pizze-tradizionali", name: "pizze-tradizionali" },
+  { id: "menu fisso", name: "menu fisso" },
   { id: "pizze-speciali", name: "pizze-speciali" },
   { id: "calzoni", name: "calzoni" },
   { id: "kebab-panini", name: "kebab-panini" },
